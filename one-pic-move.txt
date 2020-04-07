@@ -1,0 +1,5 @@
+ffmpeg -f lavfi -i "\
+color=black:d=45:s=1920x1080[background]; \
+movie=allisfine.jpeg[overlay]; \
+[background][overlay]overlay='W-n*4:(H-h)/2' \
+" output.mp4

@@ -1,0 +1,12 @@
+{
+  "name": "shelltest",
+  "version": "1.0.0",
+  "description": "shelljs test",
+  "main": "index.js",
+  "author": "dante",
+  "license": "MIT",
+  "dependencies": {
+    "fluent-ffmpeg": "^2.1.2",
+    "shelljs": "^0.8.3"
+  }
+}
