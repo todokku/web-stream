@@ -1,5 +1,15 @@
 ffmpeg -f lavfi -i "\
 color=black:d=45:s=1920x1080[background]; \
-movie=allisfine.jpeg[overlay]; \
-[background][overlay]overlay='W-n*4:(H-h)/2' \
+movie=allisfine.jpeg[overlay1]allisfine.jpeg[overlay2]; \
+[background][overlay1]overlay='W-n*4:(H-h)/2'; \
+[background][overlay2]overlay='W-n*4:(H-h)/2' \
 " output.mp4
+
+ffmpeg -i INPUT -vf "split [main][tmp]; [tmp] crop=iw:ih/2:0:0, vflip [flip]; [main][flip] overlay=0:H/2" OUTPUT
+
+ffmpeg -i background.mp4 -i allisfine.jpeg -filter_complex "\
+[0][1]overlay='-W-20:(H-n*5)'[sparda]; \
+[sparda][1]overlay='-W-40:(H-n*5)'[dante]; \
+[dante][1]overlay='-W-60:(H-n*5)'[rebeliion]; \
+[rebellion][1]overlay='-W-80:(H-n*5)' \
+" outback1.mp4 
